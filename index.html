@@ -130,45 +130,45 @@
     </div>
 
     <script>
-        async function fetchTelegramCount() {
-            const countElement = document.getElementById('sub-count');
-            const channelUrl = 'https://t.me/oldmusicmania';
+    async function fetchTelegramCount() {
+        const countElement = document.getElementById('sub-count');
+        const channelUrl = 'https://t.me/oldmusicmania'; 
+        
+        try {
+            // Используем другой прокси (codetabs), который лояльнее к file://
+            const response = await fetch(`https://api.codetabs.com/v1/proxy?quest=${channelUrl}`);
             
-            const proxies = [
-                `https://api.allorigins.win/raw?url=${encodeURIComponent(channelUrl)}`,
-                `https://api.codetabs.com/v1/proxy?quest=${channelUrl}`,
-                `https://thingproxy.freeboard.io/fetch/${channelUrl}`
-            ];
+            if (!response.ok) throw new Error('Network response was not ok');
+            
+            // Codetabs возвращает сразу сырой HTML, а не JSON
+            const htmlText = await response.text();
 
-            for (const proxy of proxies) {
-                try {
-                    const response = await fetch(proxy);
-                    if (!response.ok) continue; 
-                    
-                    const htmlText = await response.text();
-                    const match = htmlText.match(/<div class="tgme_page_extra">([^<]+)<\/div>/);
-                    
-                    if (match && match[1]) {
-                        const count = match[1].replace(/\D/g, '');
-                        if (count) {
-                            countElement.style.opacity = '0';
-                            setTimeout(() => {
-                                countElement.textContent = new Intl.NumberFormat('ru-RU').format(count);
-                                countElement.style.opacity = '1';
-                            }, 300);
-                            return; 
-                        }
-                    }
-                } catch (error) {
-                    console.warn(`Ошибка при обращении к прокси...`);
+            // Ищем кусок кода Telegram с подписчиками
+            const match = htmlText.match(/<div class="tgme_page_extra">([^<]+)<\/div>/);
+            
+            if (match && match[1]) {
+                // Вырезаем только цифры из текста (например, из "1 234 subscribers" останется "1234")
+                const count = match[1].replace(/\D/g, '');
+                
+                if (count) {
+                    // Анимированно меняем цифру
+                    countElement.style.opacity = '0';
+                    setTimeout(() => {
+                        countElement.textContent = new Intl.NumberFormat('ru-RU').format(count);
+                        countElement.style.opacity = '1';
+                    }, 300);
+                    return; 
                 }
             }
-
-            countElement.textContent = '5 000+'; 
+            throw new Error('Count not found in HTML');
+        } catch (error) {
+            console.error('Не удалось загрузить счетчик:', error);
+            // Если прокси не ответил, отвалился интернет или забанил Telegram
+            countElement.textContent = '5 000+';
         }
-
-        document.addEventListener('DOMContentLoaded', fetchTelegramCount);
-    </script>
+    }
+    document.addEventListener('DOMContentLoaded', fetchTelegramCount);
+</script>
 
 </body>
 </html>
