@@ -15,16 +15,14 @@
         }
 
         html {
-            /* Цвет фона из картинки-референса */
-            background-color: #141618; 
+            /* Однородный темный цвет фона, совпадающий с краями твоего логотипа */
+            background-color: #17181a; 
             height: 100%;
         }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            /* Текстура зернистого шума как на картинке */
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZUZpbHRlciI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZUZpbHRlcikiIG9wYWNpdHk9IjAuMDgiLz48L3N2Zz4=');
-            background-repeat: repeat;
+            background-color: #17181a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -36,14 +34,15 @@
 
         .card {
             text-align: center;
-            /* Легкая прозрачность для сохранения стиля карточки */
             background: rgba(255, 255, 255, 0.03); 
-            padding: 40px 30px;
-            border-radius: 20px;
+            /* Увеличены внутренние отступы */
+            padding: 60px 40px;
+            border-radius: 30px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            max-width: 350px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            /* УВЕЛИЧЕНО В 2 РАЗА */
+            max-width: 700px; 
             width: 90%;
             animation: fadeIn 1s ease-out;
         }
@@ -54,28 +53,30 @@
         }
 
         .logo {
-            width: 100px;
-            height: 100px;
+            /* Увеличен логотип пропорционально карточке */
+            width: 180px; 
+            height: 180px;
             border-radius: 50%;
-            margin: 0 auto 20px;
+            margin: 0 auto 30px;
             display: block;
             object-fit: cover;
-            /* ПОДСВЕТКА И ОБВОДКА УБРАНЫ */
             box-shadow: none; 
             border: none;
         }
 
         h1 {
-            font-size: 24px;
-            margin-bottom: 12px;
+            /* Увеличен шрифт заголовка */
+            font-size: 42px; 
+            margin-bottom: 16px;
             letter-spacing: 1px;
         }
 
         p {
-            font-size: 14px;
+            /* Увеличен шрифт описания */
+            font-size: 20px; 
             color: #bdc3c7;
-            margin-bottom: 30px;
-            line-height: 1.5;
+            margin-bottom: 40px;
+            line-height: 1.6;
         }
 
         .btn {
@@ -83,9 +84,11 @@
             text-decoration: none;
             background: #0088cc;
             color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
+            /* Увеличена кнопка */
+            padding: 20px 50px; 
+            border-radius: 60px;
             font-weight: bold;
+            font-size: 18px;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
             animation: pulse 2s infinite;
@@ -104,8 +107,8 @@
         }
 
         .footer {
-            margin-top: 25px;
-            font-size: 12px;
+            margin-top: 40px;
+            font-size: 16px; /* Увеличен футер */
             color: #7f8c8d;
         }
         
@@ -113,6 +116,17 @@
             transition: opacity 0.3s ease;
             font-weight: bold;
             color: #e67e22;
+        }
+
+        /* --- МОБИЛЬНАЯ АДАПТАЦИЯ --- */
+        /* Чтобы увеличенная карточка красиво смотрелась на телефонах */
+        @media (max-width: 600px) {
+            .card { padding: 40px 20px; }
+            .logo { width: 120px; height: 120px; margin-bottom: 20px; }
+            h1 { font-size: 28px; }
+            p { font-size: 16px; margin-bottom: 30px; }
+            .btn { padding: 15px 35px; font-size: 16px; }
+            .footer { font-size: 14px; margin-top: 30px; }
         }
     </style>
 </head>
