@@ -4,25 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MusicmaniA | Telegram</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background-color: #141618; /* Темный, холодный основной цвет */
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZUZpbHRlciI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZUZpbHRlcikiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+            box-sizing: border-box;
+        }
+
+        html {
+            /* Цвет фона из картинки-референса */
+            background-color: #141618; 
+            height: 100%;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            /* Текстура зернистого шума как на картинке */
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZUZpbHRlciI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZUZpbHRlcikiIG9wYWNpdHk9IjAuMDgiLz48L3N2Zz4=');
             background-repeat: repeat;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            color: #ffffff;
             overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .card {
             text-align: center;
-            /* Темный, текстурированный фон для самой карточки */
-            background: #141618;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJub2lzZUZpbHRlciI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNub2lzZUZpbHRlcikiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+            /* Легкая прозрачность для сохранения стиля карточки */
+            background: rgba(255, 255, 255, 0.03); 
             padding: 40px 30px;
             border-radius: 20px;
             backdrop-filter: blur(10px);
@@ -30,23 +45,26 @@
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
             max-width: 350px;
             width: 90%;
-            color: #ffffff;
+            animation: fadeIn 1s ease-out;
         }
 
-        .placeholder {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .logo {
             width: 100px;
             height: 100px;
-            background: #e67e22; /* Цвет ретро-винила */
             border-radius: 50%;
             margin: 0 auto 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 50px;
-            box-shadow: 0 0 20px rgba(230, 126, 34, 0.4);
-            border: 2px solid rgba(255,255,255,0.1);
+            display: block;
+            object-fit: cover;
+            /* ПОДСВЕТКА И ОБВОДКА УБРАНЫ */
+            box-shadow: none; 
+            border: none;
         }
-    
+
         h1 {
             font-size: 24px;
             margin-bottom: 12px;
@@ -58,6 +76,43 @@
             color: #bdc3c7;
             margin-bottom: 30px;
             line-height: 1.5;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            background: #0088cc;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #00aaff;
+            box-shadow: 0 8px 20px rgba(0, 136, 204, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        
+        #sub-count {
+            transition: opacity 0.3s ease;
+            font-weight: bold;
+            color: #e67e22;
         }
     </style>
 </head>
@@ -79,45 +134,35 @@
     </div>
 
     <script>
-    async function fetchTelegramCount() {
-        const countElement = document.getElementById('sub-count');
-        const channelUrl = 'https://t.me/oldmusicmania'; 
-        
-        try {
-            // Используем другой прокси (codetabs), который лояльнее к file://
-            const response = await fetch(`https://api.codetabs.com/v1/proxy?quest=${channelUrl}`);
+        async function fetchTelegramCount() {
+            const countElement = document.getElementById('sub-count');
+            const channelUrl = 'https://t.me/oldmusicmania'; 
             
-            if (!response.ok) throw new Error('Network response was not ok');
-            
-            // Codetabs возвращает сразу сырой HTML, а не JSON
-            const htmlText = await response.text();
-
-            // Ищем кусок кода Telegram с подписчиками
-            const match = htmlText.match(/<div class="tgme_page_extra">([^<]+)<\/div>/);
-            
-            if (match && match[1]) {
-                // Вырезаем только цифры из текста (например, из "1 234 subscribers" останется "1234")
-                const count = match[1].replace(/\D/g, '');
+            try {
+                const response = await fetch(`https://api.codetabs.com/v1/proxy?quest=${channelUrl}`);
+                if (!response.ok) throw new Error('Network response was not ok');
+                const htmlText = await response.text();
+                const match = htmlText.match(/<div class="tgme_page_extra">([^<]+)<\/div>/);
                 
-                if (count) {
-                    // Анимированно меняем цифру
-                    countElement.style.opacity = '0';
-                    setTimeout(() => {
-                        countElement.textContent = new Intl.NumberFormat('ru-RU').format(count);
-                        countElement.style.opacity = '1';
-                    }, 300);
-                    return; 
+                if (match && match[1]) {
+                    const count = match[1].replace(/\D/g, '');
+                    if (count) {
+                        countElement.style.opacity = '0';
+                        setTimeout(() => {
+                            countElement.textContent = new Intl.NumberFormat('ru-RU').format(count);
+                            countElement.style.opacity = '1';
+                        }, 300);
+                        return; 
+                    }
                 }
+                throw new Error('Count not found');
+            } catch (error) {
+                console.error('Не удалось загрузить счетчик:', error);
+                countElement.textContent = '5 000+';
             }
-            throw new Error('Count not found in HTML');
-        } catch (error) {
-            console.error('Не удалось загрузить счетчик:', error);
-            // Если прокси не ответил, отвалился интернет или забанил Telegram
-            countElement.textContent = '5 000+';
         }
-    }
-    document.addEventListener('DOMContentLoaded', fetchTelegramCount);
-</script>
+        document.addEventListener('DOMContentLoaded', fetchTelegramCount);
+    </script>
 
 </body>
 </html>
